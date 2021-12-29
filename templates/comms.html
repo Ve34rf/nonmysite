@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Отзывы{% endblock %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% for comment in comments %}
+<div class="alert alert-warning mt-2">
+    <h3>{{ comment.title }}</h3>
+    <p>{{ comment.content|safe }}</p>
+    <p>{{ comment.created_at|date:"Y-m-d" }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Логин{% endblock %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<div class="container py-6">
+    <h1>Login</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ login_form|crispy }}
+        <button class="btn btn-warning" type="submit">Log</button>
+    </form>
+    <p class="text-center">If you don't have an account, <a href="/register">create</a>.</p>
+</div>
+
+
+{% endblock %}

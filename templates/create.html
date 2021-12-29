@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Создание{% endblock %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="container py-12">
+        <h1>Создать отзыв.</h1>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.title }}
+            <br>
+            {{ form.content }}
+            <br>
+            <button type="submit" class="btn btn-secondary">Опубликовать отзыв.</button>
+            <span>{{error}}</span>
+        </form>
+    </div>
+</div>
+
+{% for comment in comments %}
+<div class="alert alert-warning mt-2">
+    <h3>{{ comment.title }}</h3>
+    <p>{{ comment.content|safe }}</p>
+    <p>{{ comment.created_at|date:"Y-m-d" }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}

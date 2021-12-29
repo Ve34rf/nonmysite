@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Изменить информацию.{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == profile.user.id %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Изменить страницу.</h1>
+            <br>
+            <div class="form-group">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Сохранить изменения.</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <h1>Ваш уровень доступа не позволяет изменять страницы чужих пользователей. Просим вас покинуть данную страницу, иначе у вас юудут проблемы.</h1>
+    {% endif %}
+
+{% else %}
+<h1>Ваши личные данные уже у нас. Вы попытались просмотреть серкретные данные Мафии Азербайджана. Если вы наш сотрудник, который по глупости вышел из учётной записи, то вы должны в течении 5 минут зайти обратно.</h1>
+{% endif %}
+
+{% endblock %}
